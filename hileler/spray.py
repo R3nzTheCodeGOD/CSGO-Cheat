@@ -53,6 +53,7 @@ def main():
     oldpunchx = 0.0
     oldpunchy = 0.0
     while True:
+        time.sleep(0.05)
         if rcsonoff:
             rcslocalplayer = pm.read_int(client + dwLocalPlayer)
             rcsengine = pm.read_int(engine + dwClientState)

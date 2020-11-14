@@ -14,7 +14,7 @@ from wallhack import main as wallhack
 from radar import main as radar
 from spray import main as spray
 from money import main as money
-from trigger import main as trigger
+from aimbot import main as aimbot
 from config import *
 
 _msg = f"""
@@ -31,11 +31,11 @@ _msg = f"""
     [{sprayKey}] = Spray Açar ve kapatır
     [{noFlashKey}] = Kör Olmama Açar ve kapatır
     [{moneyKey}] = Rakip paraları göstermeyi açar ve kapatır
-    [{triggerKey}] = Trigger açar ve kapatır
+    [{aimbotKey}] = Aimbotu açar ve kapatır
     
-    # [Trigger ayarları]
-    Trigger Tepki Süresi = [{responseSpeed}]
-    Trigger Ateş Döngü Süresi = [{fireLoop}]
+    # [AIMBOT AYARLARI]
+    Kapsanan alan(aimFOV) = [{aimfov}]
+    Gövdeye ateş etme = [{"Açık" if baim else "Kapalı"}]
 
     # Oyunda ayarın açıkmı kapalımı olduğunu anlamak için bip seslerini dinleyin [ince] bip sesi ayarın açıldığını [kalın] bip sesi ayarın kapandığını belirtir.
 
@@ -50,11 +50,12 @@ class CSGO:
         self.c_radar = False
         self.c_spray = False
         self.c_money = False
-        self.c_trigger = False
+        self.c_aimbot = False
         if startSound is True:
             winsound.PlaySound("sesler/ph.wav", winsound.SND_FILENAME)
             winsound.PlaySound("sesler/31.wav", winsound.SND_FILENAME)
         print(_msg)
+        
 
     def f_bhop(self) -> None:
         if self.c_bhop is False:
@@ -140,17 +141,17 @@ class CSGO:
             except:
                 pass
 
-    def f_trigger(self) -> None:
-        if self.c_trigger is False:
+    def f_aimbot(self) -> None:
+        if self.c_aimbot is False:
             freeze_support()
-            self.t_trigger = Process(target=trigger)
-            self.t_trigger.start()
-            self.c_trigger = True
+            self.t_aimbot = Process(target=aimbot)
+            self.t_aimbot.start()
+            self.c_aimbot = True
             return
-        if self.c_trigger is True:
+        if self.c_aimbot is True:
             try:
-                self.c_trigger = False
-                self.t_trigger.terminate()
+                self.c_aimbot = False
+                self.t_aimbot.terminate()
             except:
                 pass
 
@@ -192,10 +193,10 @@ class CSGO:
                 winsound.Beep(500 if self.c_money else 100, 600)
                 time.sleep(0.6)
             
-            if keyboard.is_pressed(triggerKey):
-                self.f_trigger()
-                print(f"[TRIGGER] {'Açıldı!' if self.c_trigger else 'Kapatıldı!'}")
-                winsound.Beep(500 if self.c_trigger else 100, 600)
+            if keyboard.is_pressed(aimbotKey):
+                self.f_aimbot()
+                print(f"[AIMBOT] {'Açıldı!' if self.c_aimbot else 'Kapatıldı!'}")
+                winsound.Beep(500 if self.c_aimbot else 100, 600)
                 time.sleep(0.6)
 
             time.sleep(0.001)
