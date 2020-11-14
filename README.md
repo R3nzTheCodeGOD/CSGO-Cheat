@@ -9,7 +9,7 @@ Legit sayılıcak özelliklere sahip csgo hilesidir. Komut isteminde çalışır
 |sekmeme|recoilControl|
 |körOlmama|noFlash|
 |rakiplerinParası|enemyMoney|
-|OtomatikAteş|Trigger|
+|OtomatikNişan|Aimbot|
 
 # Yükleme Ve Çalıştırma
 + Offsetlerin güncel olup olmadığını kontrol edin [Güncel Offsetler](https://github.com/frk1/hazedumper/blob/master/csgo.hpp)
